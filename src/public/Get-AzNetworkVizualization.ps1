@@ -42,7 +42,8 @@ function Get-AzNetworkVizualization {
         [ValidateSet('png', 'svg')]
         [string]
         $OutputFormat = 'png',
-        [switch] $DarkMode
+        [switch] $DarkMode,
+        [string] $ExportPath
     )
         
     #region defaults
@@ -196,7 +197,7 @@ function Get-AzNetworkVizualization {
             }
 
         } 
-    } | Export-PSGraph -ShowGraph:$ShowGraph -OutputFormat $OutputFormat -OutVariable Graph
+    } | Export-PSGraph -ShowGraph:$ShowGraph -OutputFormat $OutputFormat -OutVariable Graph -DestinationPath $ExportPath
     #endregion graph-generation
 
     Write-Verbose "Graph Exported to path: $($Graph.fullname)"
